@@ -12,7 +12,7 @@ import time
 import zipfile
 
 ##############################################
-st.set_page_config(page_title="DataComp",layout='wide',page_icon="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPFg0oJPlzocM4yk6K6Q0WFzR9ISo0in5E5Q&s")
+st.set_page_config(page_title="DataComp",layout='wide',page_icon="https://drive.google.com/file/d/1_2MlAY3JH6Jwx1bPZsX8GgNNp1XVBnzo/view?usp=sharing")
 
 # components.html(
 #     """
@@ -57,11 +57,11 @@ st.markdown(hide_img_fs, unsafe_allow_html=True)
 with col2:
     #st.write('\n\n\n')
     st.write('\n')
-    st.title('Data Verification Tool',anchor=False)
+    st.title('EMCAI Test Tool',anchor=False)
 #     pass
 # Main content
 st.header("Compare Excel Reports",anchor=False)
-#st.write("*restrict to excel uploads only ")
+st.write("Upload Excel documents only ")
 #st.write("This is the main content area.")
 
 
@@ -74,7 +74,7 @@ st.markdown(
         f"""
         <style>
             [data-testid="stSidebar"] {{
-                background-image: url({"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6lusNEaS-BAjRAg0lhjOUKbJy0DippLQzdQ&s"});
+                background-image: url({"https://drive.google.com/file/d/1_2MlAY3JH6Jwx1bPZsX8GgNNp1XVBnzo/view?usp=sharing"});
                 background-repeat: no-repeat;
                 padding-top: 50px;
                 background-position: 0px 0px;
@@ -104,7 +104,8 @@ st.sidebar.header("Document Type")
 # from streamlit_option_menu import option_menu
 # from streamlit_extras.switch_page_button import switch_page
 
-# Comapare the files
+# Compare the files
+# Set up comparing the file - so set up the temporary path, the situation if there is an error code and the colours
 temp_path = ''
 ##########################
 
@@ -313,7 +314,7 @@ def load_data(file):
 
 ################
 
-selection = st.sidebar.radio('Select Format', options=['Excel Report', 'Multi Excel Reports','PDF Report'])
+selection = st.sidebar.radio('Select Format', options=['Excel Report', 'Multi Excel Reports'])
 #st.sidebar.checkbox('special')
 if selection == 'Excel Report':
     col1,col2 = st.columns([5,5])
@@ -558,11 +559,7 @@ elif selection == 'Multi Excel Reports':
         #     , disabled = not excel_file
         #     )
 
-elif selection == 'PDF Report':
-    col1,col2 = st.columns([5,5])
-    #uploaded_file1 = None
-    dataframe1 = None
-    dataframe2 = None
+
 
     with col1:
         uploaded_file1 = st.file_uploader("Upload Report file for quality check")
@@ -574,18 +571,6 @@ elif selection == 'PDF Report':
             # st.write("Total rows and columns in sheet wise are are x,y")
             # st.write("-------------------------------")
             # st.write("Total rows in sheet wise are ")
-
-    with col2:
-        uploaded_file2 = st.file_uploader("Upload Reference Report file for Comparision")
-        if uploaded_file2 is not None:
-            # Can be used wherever a "file-like" object is accepted:
-            # dataframe2 = pd.read_excel(uploaded_file2,engine="pyxlsb",sheet_name = None)
-            # st.write("Total Sheets ",dataframe2.keys())
-            st.write("-------------------------------")
-            # st.write("Total rows and columns in sheet wise are are x,y")
-            # st.write("-------------------------------")
-            # st.write("Total rows in sheet wise are ")
-    st.write("Feature Development In Progress ... ")
 
 else:
     pass
